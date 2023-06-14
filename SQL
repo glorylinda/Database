@@ -1,0 +1,223 @@
+coder@67b2a26254f0:~/project$ mysql
+Welcome to the MySQL monitor.  Commands end with ; or \g.
+Your MySQL connection id is 8
+Server version: 8.0.30 MySQL Community Server - GPL
+
+Copyright (c) 2000, 2022, Oracle and/or its affiliates.
+
+Oracle is a registered trademark of Oracle Corporation and/or its
+affiliates. Other names may be trademarks of their respective
+owners.
+
+Type 'help;' or '\h' for help. Type '\c' to clear the current input statement.
+
+mysql> create database luckyshrub_db;
+Query OK, 1 row affected (0.02 sec)
+
+mysql> use luckyshrub_db;
+Database changed
+mysql> CREATE TABLE Orders(OrderID INT, Department VARCHAR(100), OrderDate DATE, OrderQty INT, OrderTotal INT, PRIMARY KEY(OrderID));
+Query OK, 0 rows affected (0.13 sec)
+
+mysql> INSERT INTO Orders VALUES(1,'Lawn Care','2022-05-05',12,500),(2,'Decking','2022-05-22',150,1450),(3,'Compost and Stones','2022-05-27',20,780),(4,'Trees and Shrubs','2022-06-01',15,400),(5,'Garden Decor','2022-06-10',2,1250),(6,'Lawn Care','2022-06-10',12,500),(7,'Decking','2022-06-25',150,1450),(8,'Compost and Stones','2022-05-29',20,780),(9,'Trees and Shrubs','2022-06-10',15,400),(10,'Garden Decor','2022-06-10',2,1250),(11,'Lawn Care','2022-06-25',10,400), 
+    -> (12,'Decking','2022-06-25',100,1400),(13,'Compost and Stones','2022-05-30',15,700),(14,'Trees and Shrubs','2022-06-15',10,300),(15,'Garden Decor','2022-06-11',2,1250),(16,'Lawn Care','2022-06-10',12,500),(17,'Decking','2022-06-25',150,1450),(18,'Trees and Shrubs','2022-06-10',15,400),(19,'Lawn Care','2022-06-10',12,500),(20,'Decking','2022-06-25',150,1450),(21,'Decking','2022-06-25',150,1450);
+Query OK, 21 rows affected (0.03 sec)
+Records: 21  Duplicates: 0  Warnings: 0
+
+mysql> select * from orders;
+ERROR 1146 (42S02): Table 'luckyshrub_db.orders' doesn't exist
+mysql> select * from Orders;
++---------+--------------------+------------+----------+------------+
+| OrderID | Department         | OrderDate  | OrderQty | OrderTotal |
++---------+--------------------+------------+----------+------------+
+|       1 | Lawn Care          | 2022-05-05 |       12 |        500 |
+|       2 | Decking            | 2022-05-22 |      150 |       1450 |
+|       3 | Compost and Stones | 2022-05-27 |       20 |        780 |
+|       4 | Trees and Shrubs   | 2022-06-01 |       15 |        400 |
+|       5 | Garden Decor       | 2022-06-10 |        2 |       1250 |
+|       6 | Lawn Care          | 2022-06-10 |       12 |        500 |
+|       7 | Decking            | 2022-06-25 |      150 |       1450 |
+|       8 | Compost and Stones | 2022-05-29 |       20 |        780 |
+|       9 | Trees and Shrubs   | 2022-06-10 |       15 |        400 |
+|      10 | Garden Decor       | 2022-06-10 |        2 |       1250 |
+|      11 | Lawn Care          | 2022-06-25 |       10 |        400 |
+|      12 | Decking            | 2022-06-25 |      100 |       1400 |
+|      13 | Compost and Stones | 2022-05-30 |       15 |        700 |
+|      14 | Trees and Shrubs   | 2022-06-15 |       10 |        300 |
+|      15 | Garden Decor       | 2022-06-11 |        2 |       1250 |
+|      16 | Lawn Care          | 2022-06-10 |       12 |        500 |
+|      17 | Decking            | 2022-06-25 |      150 |       1450 |
+|      18 | Trees and Shrubs   | 2022-06-10 |       15 |        400 |
+|      19 | Lawn Care          | 2022-06-10 |       12 |        500 |
+|      20 | Decking            | 2022-06-25 |      150 |       1450 |
+|      21 | Decking            | 2022-06-25 |      150 |       1450 |
++---------+--------------------+------------+----------+------------+
+21 rows in set (0.00 sec)
+
+mysql> select orderDate from Orders GROUP BY orderDate; --Write a SQL SELECT statement to group all records that have the same order date. 
++------------+
+| orderDate  |
++------------+
+| 2022-05-05 |
+| 2022-05-22 |
+| 2022-05-27 |
+| 2022-06-01 |
+| 2022-06-10 |
+| 2022-06-25 |
+| 2022-05-29 |
+| 2022-05-30 |
+| 2022-06-15 |
+| 2022-06-11 |
++------------+
+10 rows in set (0.00 sec)
+
+mysql> select COUNT(orderDate) AS "Count" from Orders GROUP Count;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'Count' at line 1
+mysql> select COUNT(orderDate) AS "Count" from Orders GROUP "Count"
+    -> 
+[1]+  Stopped                 mysql
+coder@67b2a26254f0:~/project$ mysql
+Welcome to the MySQL monitor.  Commands end with ; or \g.
+Your MySQL connection id is 9
+Server version: 8.0.30 MySQL Community Server - GPL
+
+Copyright (c) 2000, 2022, Oracle and/or its affiliates.
+
+Oracle is a registered trademark of Oracle Corporation and/or its
+affiliates. Other names may be trademarks of their respective
+owners.
+
+Type 'help;' or '\h' for help. Type '\c' to clear the current input statement.
+
+mysql> use luckyshrub_db;
+Reading table information for completion of table and column names
+You can turn off this feature to get a quicker startup with -A
+
+Database changed
+mysql> select * from Orders;
++---------+--------------------+------------+----------+------------+
+| OrderID | Department         | OrderDate  | OrderQty | OrderTotal |
++---------+--------------------+------------+----------+------------+
+|       1 | Lawn Care          | 2022-05-05 |       12 |        500 |
+|       2 | Decking            | 2022-05-22 |      150 |       1450 |
+|       3 | Compost and Stones | 2022-05-27 |       20 |        780 |
+|       4 | Trees and Shrubs   | 2022-06-01 |       15 |        400 |
+|       5 | Garden Decor       | 2022-06-10 |        2 |       1250 |
+|       6 | Lawn Care          | 2022-06-10 |       12 |        500 |
+|       7 | Decking            | 2022-06-25 |      150 |       1450 |
+|       8 | Compost and Stones | 2022-05-29 |       20 |        780 |
+|       9 | Trees and Shrubs   | 2022-06-10 |       15 |        400 |
+|      10 | Garden Decor       | 2022-06-10 |        2 |       1250 |
+|      11 | Lawn Care          | 2022-06-25 |       10 |        400 |
+|      12 | Decking            | 2022-06-25 |      100 |       1400 |
+|      13 | Compost and Stones | 2022-05-30 |       15 |        700 |
+|      14 | Trees and Shrubs   | 2022-06-15 |       10 |        300 |
+|      15 | Garden Decor       | 2022-06-11 |        2 |       1250 |
+|      16 | Lawn Care          | 2022-06-10 |       12 |        500 |
+|      17 | Decking            | 2022-06-25 |      150 |       1450 |
+|      18 | Trees and Shrubs   | 2022-06-10 |       15 |        400 |
+|      19 | Lawn Care          | 2022-06-10 |       12 |        500 |
+|      20 | Decking            | 2022-06-25 |      150 |       1450 |
+|      21 | Decking            | 2022-06-25 |      150 |       1450 |
++---------+--------------------+------------+----------+------------+
+21 rows in set (0.00 sec)
+
+mysql> select COUNT(OrderDate) AS SameDay from Orders GROUP BY SameDay;
+ERROR 1056 (42000): Can't group on 'SameDay'
+mysql> select COUNT(OrderDate) AS SameDay from Orders GROUP BY OrderDate; -- Write a SQL SELECT statement to retrieve the number of orders placed on the same day. 
++---------+
+| SameDay |
++---------+
+|       1 |
+|       1 |
+|       1 |
+|       1 |
+|       7 |
+|       6 |
+|       1 |
+|       1 |
+|       1 |
+|       1 |
++---------+
+10 rows in set (0.00 sec)
+
+mysql> select SUM(OrderQty) from Orders GROUP BY Department;--Write a SQL SELECT statement to retrieve the total order quantities placed by each department.
++---------------+
+| SUM(OrderQty) |
++---------------+
+|            58 |
+|           850 |
+|            55 |
+|            55 |
+|             6 |
++---------------+
+5 rows in set (0.00 sec)
+
+mysql> select * from Orders;
++---------+--------------------+------------+----------+------------+
+| OrderID | Department         | OrderDate  | OrderQty | OrderTotal |
++---------+--------------------+------------+----------+------------+
+|       1 | Lawn Care          | 2022-05-05 |       12 |        500 |
+|       2 | Decking            | 2022-05-22 |      150 |       1450 |
+|       3 | Compost and Stones | 2022-05-27 |       20 |        780 |
+|       4 | Trees and Shrubs   | 2022-06-01 |       15 |        400 |
+|       5 | Garden Decor       | 2022-06-10 |        2 |       1250 |
+|       6 | Lawn Care          | 2022-06-10 |       12 |        500 |
+|       7 | Decking            | 2022-06-25 |      150 |       1450 |
+|       8 | Compost and Stones | 2022-05-29 |       20 |        780 |
+|       9 | Trees and Shrubs   | 2022-06-10 |       15 |        400 |
+|      10 | Garden Decor       | 2022-06-10 |        2 |       1250 |
+|      11 | Lawn Care          | 2022-06-25 |       10 |        400 |
+|      12 | Decking            | 2022-06-25 |      100 |       1400 |
+|      13 | Compost and Stones | 2022-05-30 |       15 |        700 |
+|      14 | Trees and Shrubs   | 2022-06-15 |       10 |        300 |
+|      15 | Garden Decor       | 2022-06-11 |        2 |       1250 |
+|      16 | Lawn Care          | 2022-06-10 |       12 |        500 |
+|      17 | Decking            | 2022-06-25 |      150 |       1450 |
+|      18 | Trees and Shrubs   | 2022-06-10 |       15 |        400 |
+|      19 | Lawn Care          | 2022-06-10 |       12 |        500 |
+|      20 | Decking            | 2022-06-25 |      150 |       1450 |
+|      21 | Decking            | 2022-06-25 |      150 |       1450 |
++---------+--------------------+------------+----------+------------+
+21 rows in set (0.00 sec)
+
+mysql> select COUNT(OrderDate) from Orders GROUP BY OrderDate HAVING OrderDate BETWEEN 2022-06-1 and 2022-06-30;
+Empty set, 2 warnings (0.01 sec)
+
+mysql> select COUNT(OrderDate) from Orders GROUP BY OrderDate;
++------------------+
+| COUNT(OrderDate) |
++------------------+
+|                1 |
+|                1 |
+|                1 |
+|                1 |
+|                7 |
+|                6 |
+|                1 |
+|                1 |
+|                1 |
+|                1 |
++------------------+
+10 rows in set (0.00 sec)
+
+mysql> select COUNT(OrderDate) as Dup from Orders GROUP BY OrderDate HAVING Dup BETWEEN 2022-06-01 and 2022-06-30;
+Empty set (0.00 sec)
+
+mysql> select COUNT(OrderDate) as Dup from Orders GROUP BY OrderDate HAVING OrderDate BETWEEN 2022-06-01 and 2022-06-30;
+Empty set, 2 warnings (0.01 sec)
+
+mysql> select COUNT(OrderDate) from Orders GROUP BY OrderDate HAVING OrderDate <= 2022-06-01 and OrderDate<=2022-06-30;
+Empty set, 2 warnings (0.00 sec)
+
+mysql> select COUNT(OrderDate) as Dup from Orders GROUP BY OrderDate HAVING OrderDate BETWEEN '2022-06-01' and '2022-06-30'; --Write a SQL SELECT statement to retrieve the number of orders placed on the same day between the following dates: 1st June 2022 and 30th June 2022.
++-----+
+| Dup |
++-----+
+|   1 |
+|   7 |
+|   6 |
+|   1 |
+|   1 |
++-----+
+5 rows in set (0.00 sec)
